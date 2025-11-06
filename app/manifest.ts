@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Recipe Finder',
     short_name: 'Recipe Finder',
-    description: 'Discover dishes you\'ll love - Explore authentic Ghanaian and Nigerian recipes',
+    description: 'Discover dishes you\'ll love - Explore authentic recipes from around the world',
     start_url: '/',
     display: 'standalone',
     background_color: '#0f0f0f',

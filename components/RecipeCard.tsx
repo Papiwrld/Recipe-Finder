@@ -42,15 +42,15 @@ function RecipeCard({ recipe, showMatchPercentage = false, matchPercentage }: Re
       className="block group"
       aria-label={`View recipe: ${recipe.title}`}
     >
-      <div className="relative bg-surface rounded-lg overflow-hidden border border-muted hover:border-accent transition-all hover:shadow-lg">
+      <div className="relative bg-surface rounded-xl sm:rounded-2xl overflow-hidden border border-muted/50 hover:border-accent transition-all duration-300 hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-1">
         {/* Image */}
-        <div className="relative w-full h-48 bg-muted">
+        <div className="relative w-full h-48 sm:h-56 md:h-64 bg-muted overflow-hidden">
           {recipe.image ? (
             <Image
               src={recipe.image}
               alt={recipe.title}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
               loading="lazy"
               quality={85}
@@ -127,12 +127,12 @@ function RecipeCard({ recipe, showMatchPercentage = false, matchPercentage }: Re
         </div>
 
         {/* Content */}
-        <div className="p-3 sm:p-4">
-          <h3 className="font-semibold text-base sm:text-lg text-text mb-2 line-clamp-2 group-hover:text-accent transition-colors">
+        <div className="p-4 sm:p-5 md:p-6">
+          <h3 className="font-bold text-base sm:text-lg md:text-xl text-text mb-3 sm:mb-4 line-clamp-2 group-hover:text-accent transition-colors leading-tight">
             {recipe.title}
           </h3>
           
-          <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-text-secondary flex-wrap">
+          <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-text-secondary/80 flex-wrap">
             {recipe.cookTime && (
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />

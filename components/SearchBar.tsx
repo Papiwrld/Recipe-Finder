@@ -136,26 +136,31 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
   }, []);
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-2 sm:px-0">
+    <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 md:px-6">
       <div className="relative">
-        <div className="flex flex-wrap items-center gap-2 p-2.5 sm:p-3 bg-white/95 dark:bg-surface rounded-xl sm:rounded-2xl border-2 border-white/20 dark:border-muted focus-within:border-accent focus-within:shadow-2xl transition-all shadow-xl backdrop-blur-sm">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-2 sm:p-2.5 md:p-3 bg-white/98 dark:bg-surface/98 backdrop-blur-xl rounded-3xl transition-all duration-300 shadow-xl">
+          {/* Search Icon (Left) */}
+          <div className="hidden sm:flex items-center justify-center text-text-secondary/60">
+            <Search className="w-5 h-5 sm:w-6 sm:h-6" />
+          </div>
+
           {/* Ingredient chips */}
           {ingredients.map((ingredient, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-1 bg-accent/20 text-accent rounded-full text-xs sm:text-sm font-medium"
+              className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 bg-gradient-to-r from-accent/20 to-accent/10 text-accent rounded-full text-xs sm:text-sm font-semibold border border-accent/30 shadow-sm hover:shadow-md transition-all"
             >
-              {ingredient}
+              <span className="capitalize">{ingredient}</span>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   removeIngredient(index);
                 }}
-                className="hover:bg-accent/30 rounded-full p-0.5 sm:p-1 touch-manipulation active:scale-95 transition-transform"
+                className="hover:bg-accent/30 rounded-full p-0.5 sm:p-1 touch-manipulation active:scale-90 transition-transform"
                 aria-label={`Remove ${ingredient}`}
                 type="button"
               >
-                <X className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
+                <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             </span>
           ))}
@@ -169,7 +174,7 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
             onKeyDown={handleKeyDown}
             onFocus={() => setShowSuggestions(suggestions.length > 0)}
             placeholder={ingredients.length === 0 ? placeholder : "Add more ingredients..."}
-            className="flex-1 min-w-[120px] sm:min-w-[200px] bg-transparent outline-none text-sm sm:text-base text-text placeholder:text-text-secondary/70 font-medium"
+            className="flex-1 min-w-0 sm:min-w-[180px] md:min-w-[250px] bg-transparent outline-none focus:outline-none focus-visible:outline-none text-sm sm:text-base text-text placeholder:text-text-secondary/60 font-medium py-0"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"
@@ -179,25 +184,26 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
           {/* Search button */}
           <button
             onClick={handleSearch}
-            className="p-2 sm:p-2.5 bg-accent text-white rounded-lg sm:rounded-xl hover:bg-accent/90 active:bg-accent/80 transition-all shadow-lg hover:shadow-xl active:scale-95 touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="p-2 sm:p-2.5 bg-gradient-to-r from-accent to-accent/90 text-white rounded-xl hover:from-accent/90 hover:to-accent/80 active:from-accent/80 active:to-accent/70 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 touch-manipulation min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center group"
             aria-label="Search recipes"
             type="button"
           >
-            <Search className="w-5 h-5" />
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
           </button>
         </div>
 
         {/* Suggestions dropdown */}
         {showSuggestions && suggestions.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-surface border border-muted rounded-lg shadow-xl z-50 max-h-[200px] overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-3 bg-surface/98 backdrop-blur-xl border-2 border-muted/50 rounded-xl sm:rounded-2xl shadow-2xl z-50 max-h-[240px] overflow-y-auto overflow-x-hidden">
             {suggestions.map((suggestion, index) => (
               <button
                 key={index}
                 onClick={() => handleSuggestionClick(suggestion)}
-                className="w-full text-left px-4 py-3 sm:py-2 hover:bg-muted active:bg-muted transition-colors first:rounded-t-lg last:rounded-b-lg text-sm sm:text-base touch-manipulation min-h-[44px] sm:min-h-[36px] flex items-center"
+                className="w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 hover:bg-muted/50 active:bg-muted transition-colors first:rounded-t-xl sm:first:rounded-t-2xl last:rounded-b-xl sm:last:rounded-b-2xl text-sm sm:text-base touch-manipulation min-h-[48px] sm:min-h-[44px] flex items-center gap-2 group"
                 type="button"
               >
-                {suggestion}
+                <Search className="w-4 h-4 text-text-secondary/40 group-hover:text-accent transition-colors" />
+                <span className="capitalize">{suggestion}</span>
               </button>
             ))}
           </div>

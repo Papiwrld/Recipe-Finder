@@ -30,7 +30,7 @@ export default function RecipeGrid({ recipes, showMatchPercentage = false }: Rec
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
       {recipes.map((recipe) => {
         const matchPercentage = showMatchPercentage && pantryEnabled
           ? calculateMatchPercentage(recipe)

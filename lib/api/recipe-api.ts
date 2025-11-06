@@ -220,6 +220,16 @@ export async function searchRecipes(params: RecipeSearchParams): Promise<Recipe[
         apiCalls.push(searchTheMealDB(ingredient).catch(() => []));
       }
     }
+    
+    // If cuisine filter is set, search for cuisine-specific dishes
+    if (params.cuisine) {
+      const cuisineLower = params.cuisine.toLowerCase();
+      
+      // Search by cuisine name
+      if (cuisineLower !== 'all' && cuisineLower !== 'international') {
+        apiCalls.push(searchTheMealDB(params.cuisine).catch(() => []));
+      }
+    }
   }
 
   // Search TheCocktailDB (if enabled and cocktails are included)
@@ -357,14 +367,14 @@ export async function getRegionalSpotlight(): Promise<Recipe[]> {
         console.log('Available areas from TheMealDB:', availableAreas);
       }
       
-      // Try areas that might contain African recipes
-      const areasToTry = ['Ghana', 'Nigeria', 'African', 'West African', 'Moroccan', 'Egyptian', 'Ethiopian'];
-      const validAreas = areasToTry.filter(area => 
-        availableAreas.some(a => a.toLowerCase().includes(area.toLowerCase()) || area.toLowerCase().includes(a.toLowerCase()))
+      // Try popular areas from TheMealDB
+      const popularAreas = ['Italian', 'Mexican', 'American', 'British', 'Canadian', 'Chinese', 'Croatian', 'Dutch', 'Egyptian', 'French', 'Greek', 'Indian', 'Irish', 'Jamaican', 'Japanese', 'Kenyan', 'Malaysian', 'Moroccan', 'Polish', 'Portuguese', 'Russian', 'Spanish', 'Thai', 'Tunisian', 'Turkish', 'Ukrainian', 'Vietnamese'];
+      const validAreas = popularAreas.filter(area => 
+        availableAreas.some(a => a.toLowerCase() === area.toLowerCase())
       );
       
-      // If no exact matches, try all areas and filter
-      const areasToSearch = validAreas.length > 0 ? validAreas : availableAreas.slice(0, 5);
+      // Search from popular areas
+      const areasToSearch = validAreas.length > 0 ? validAreas.slice(0, 5) : availableAreas.slice(0, 5);
       
       for (const area of areasToSearch) {
         try {
@@ -378,13 +388,13 @@ export async function getRegionalSpotlight(): Promise<Recipe[]> {
         }
       }
       
-      // Also search by common African dish names
-      const commonDishes = [
-        'jollof', 'jollof rice', 'banku', 'fufu', 'waakye', 'kenkey', 
-        'egusi', 'suya', 'moin moin', 'akara', 'pounded yam', 'plantain'
+      // Also search by popular dish names
+      const popularDishes = [
+        'pasta', 'pizza', 'chicken', 'beef', 'rice', 'soup', 
+        'cake', 'bread', 'salad', 'curry', 'stew', 'roast'
       ];
       
-      for (const dish of commonDishes.slice(0, 5)) {
+      for (const dish of popularDishes.slice(0, 6)) {
         try {
           const searchResults = await searchTheMealDB(dish);
           if (searchResults.length > 0) {

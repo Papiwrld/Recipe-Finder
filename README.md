@@ -39,7 +39,6 @@ The app integrates **3 completely public APIs** (no API keys required!) for comp
 
 1. **TheMealDB** (Primary) - Completely public, no API key required
    - Search by name, filter by area/cuisine
-   - Includes African recipes (searches by dish names like jollof, banku, fufu, etc.)
    - YouTube video integration
    - Reference: [TheMealDB API](https://www.themealdb.com/api.php)
    
@@ -141,13 +140,13 @@ Recipe Finder/
 └── public/                # Static assets
 ```
 
-## Regional Recipes
+## Recipe Discovery
 
-The app fetches recipes from around the world, including African dishes, using public APIs:
+The app fetches recipes from around the world using public APIs:
 
-- **TheMealDB**: Searches for dishes by name and area (jollof, banku, fufu, waakye, kenkey, egusi, suya, etc.)
-- **Area filtering**: Finds recipes by geographical area (Ghana, Nigeria, Moroccan, Egyptian, Ethiopian, etc.)
-- **Smart search**: Automatically detects available areas and searches common dish names
+- **TheMealDB**: Searches for dishes by name and area
+- **Area filtering**: Finds recipes by geographical area
+- **Smart search**: Automatically searches and aggregates results from multiple sources
 
 All recipes are fetched dynamically from APIs - no hardcoded data!
 

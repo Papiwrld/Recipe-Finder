@@ -243,20 +243,20 @@ export default function AdminPage() {
                 type="text"
                 value={formData.cuisine}
                 onChange={(e) => setFormData({ ...formData, cuisine: e.target.value })}
-                placeholder="e.g., West African"
+                placeholder="e.g., Italian, Mexican, Asian"
                 className="w-full p-3 bg-surface border border-muted rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-text mb-2">
-                Area (Ghana/Nigeria)
+                Area
               </label>
               <input
                 type="text"
                 value={formData.area}
                 onChange={(e) => setFormData({ ...formData, area: e.target.value })}
-                placeholder="e.g., Ghana or Nigeria"
+                placeholder="e.g., Italian, Mexican, Asian"
                 className="w-full p-3 bg-surface border border-muted rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>

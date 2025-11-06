@@ -7,9 +7,10 @@ export function OriginBadge({ origin }: { origin?: Recipe['origin'] }) {
   if (!origin) return null;
   const cls = 'px-2 py-1 rounded text-xs';
   const map: Record<NonNullable<Recipe['origin']>, string> = {
-    Ghana: 'bg-emerald-500/20 text-emerald-300',
-    Nigeria: 'bg-green-500/20 text-green-300',
     Africa: 'bg-yellow-500/20 text-yellow-300',
+    Asia: 'bg-red-500/20 text-red-300',
+    Europe: 'bg-blue-500/20 text-blue-300',
+    Americas: 'bg-green-500/20 text-green-300',
     Global: 'bg-muted text-text-secondary',
   };
   return <span className={`${cls} ${map[origin]}`}>{origin}</span>;

@@ -31,7 +31,7 @@ export interface Recipe {
   sourceUrl?: string;
   tags?: string[];
   // Enrichment fields (non-breaking)
-  origin?: 'Ghana' | 'Nigeria' | 'Africa' | 'Global';
+  origin?: 'Africa' | 'Asia' | 'Europe' | 'Americas' | 'Global';
   difficulty?: 'Easy' | 'Medium' | 'Hard';
   videoTimestamps?: { label: string; time: number }[];
 }
