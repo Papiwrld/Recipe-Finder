@@ -92,16 +92,29 @@ export default function Home() {
   const { data: searchResults = [], isLoading, isError } = useSmartSearch(smartParams, []);
 
   const handleSearch = (query: string, ingredients: string[]) => {
-    setSearchQuery(query);
+    // Normalize query - trim whitespace
+    const normalizedQuery = query.trim();
+    setSearchQuery(normalizedQuery);
     setSearchIngredients(ingredients);
   };
 
-  const displayRecipes = searchQuery || searchIngredients.length > 0 ? searchResults : spotlightRecipes;
+  // Determine which recipes to display
+  const hasActiveSearch = (searchQuery && searchQuery.trim().length > 0) || searchIngredients.length > 0;
+  const displayRecipes = hasActiveSearch ? searchResults : spotlightRecipes;
 
-  // Apply client-side filtering for videoOnly
-  const filteredRecipes = filters.videoOnly
-    ? displayRecipes.filter(r => r.videoUrl)
-    : displayRecipes;
+  // Apply client-side filtering
+  const filteredRecipes = displayRecipes.filter(recipe => {
+    // Video filter
+    if (filters.videoOnly && !recipe.videoUrl) return false;
+    
+    // Cook time filter
+    if (filters.cookTime && recipe.cookTime && recipe.cookTime > filters.cookTime) return false;
+    
+    // Cuisine filter
+    if (filters.cuisine && recipe.cuisine && !recipe.cuisine.toLowerCase().includes(filters.cuisine.toLowerCase())) return false;
+    
+    return true;
+  });
 
   // Debug logging (only in development)
   useEffect(() => {
@@ -139,40 +152,46 @@ export default function Home() {
       <Hero onSearch={handleSearch} />
 
       {/* Main Content */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         {/* Filters */}
-        {(searchQuery || searchIngredients.length > 0) && (
-          <div className="mb-8">
+        {(hasActiveSearch || filteredRecipes.length > 0) && (
+          <div className="mb-6 sm:mb-8">
             <FilterBar filters={filters} onFilterChange={setFilters} />
           </div>
         )}
 
         {/* Section Title */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-text mb-2">
-            {searchQuery || searchIngredients.length > 0 ? 'Search Results' : 'Featured Recipes'}
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text mb-2">
+            {hasActiveSearch ? 'Search Results' : 'Featured Recipes'}
           </h2>
-          <p className="text-text-secondary">
-            {searchQuery || searchIngredients.length > 0
-              ? `Found ${filteredRecipes.length} recipes`
+          <p className="text-sm sm:text-base text-text-secondary">
+            {hasActiveSearch
+              ? `Found ${filteredRecipes.length} ${filteredRecipes.length === 1 ? 'recipe' : 'recipes'}`
               : 'Discover delicious recipes from around the world'}
           </p>
         </div>
 
         {/* Loading State - for search or initial load */}
         {(isLoading || isLoadingInitial) && (
-          <div className="text-center py-16">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-accent border-t-transparent"></div>
-            <p className="mt-4 text-text-secondary">
+          <div className="text-center py-12 sm:py-16">
+            <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-4 border-accent border-t-transparent"></div>
+            <p className="mt-4 text-sm sm:text-base text-text-secondary">
               {isLoading ? 'Searching for recipes...' : 'Loading recipes...'}
             </p>
           </div>
         )}
 
         {/* Error State */}
-        {isError && !isLoading && (
-          <div className="text-center py-16">
-            <p className="text-red-500">Error loading recipes. Please try again.</p>
+        {isError && !isLoading && !isLoadingInitial && (
+          <div className="text-center py-12 sm:py-16">
+            <p className="text-red-500 text-sm sm:text-base mb-4">Error loading recipes. Please try again.</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors touch-manipulation min-h-[44px]"
+            >
+              Retry
+            </button>
           </div>
         )}
 

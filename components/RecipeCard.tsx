@@ -116,22 +116,23 @@ function RecipeCard({ recipe, showMatchPercentage = false, matchPercentage }: Re
           {/* Favorite Button */}
           <button
             onClick={handleFavoriteToggle}
-            className="absolute bottom-2 right-2 bg-black/60 hover:bg-black/80 rounded-full p-2 transition-colors"
+            className="absolute bottom-2 right-2 bg-black/60 hover:bg-black/80 active:bg-black/90 rounded-full p-2.5 sm:p-2 transition-colors touch-manipulation active:scale-95 min-w-[44px] min-h-[44px] sm:min-w-[36px] sm:min-h-[36px] flex items-center justify-center"
             aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+            type="button"
           >
             <Heart
-              className={`w-4 h-4 ${isFav ? 'fill-accent text-accent' : 'text-white'}`}
+              className={`w-5 h-5 sm:w-4 sm:h-4 ${isFav ? 'fill-accent text-accent' : 'text-white'}`}
             />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-4">
-          <h3 className="font-semibold text-lg text-text mb-2 line-clamp-2 group-hover:text-accent transition-colors">
+        <div className="p-3 sm:p-4">
+          <h3 className="font-semibold text-base sm:text-lg text-text mb-2 line-clamp-2 group-hover:text-accent transition-colors">
             {recipe.title}
           </h3>
           
-          <div className="flex items-center gap-4 text-sm text-text-secondary">
+          <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-text-secondary flex-wrap">
             {recipe.cookTime && (
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />

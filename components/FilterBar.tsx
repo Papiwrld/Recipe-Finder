@@ -18,13 +18,13 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
   };
 
   return (
-    <div className="w-full bg-surface rounded-lg p-4 border border-muted">
-      <div className="flex items-center gap-2 mb-4">
-        <Filter className="w-5 h-5 text-accent" />
-        <h3 className="font-semibold text-text">Filters</h3>
+    <div className="w-full bg-surface rounded-lg p-3 sm:p-4 border border-muted">
+      <div className="flex items-center gap-2 mb-3 sm:mb-4">
+        <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+        <h3 className="font-semibold text-sm sm:text-base text-text">Filters</h3>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Type Filter */}
         <div>
           <label className="block text-sm font-medium text-text-secondary mb-2">
@@ -33,7 +33,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
           <select
             value={filters.type || ''}
             onChange={(e) => updateFilter('type', e.target.value as 'recipe' | 'cocktail' | undefined || undefined)}
-            className="w-full p-2 bg-bg border border-muted rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full p-2.5 sm:p-2 bg-bg border border-muted rounded-lg text-sm sm:text-base text-text focus:outline-none focus:ring-2 focus:ring-accent touch-manipulation min-h-[44px] sm:min-h-[36px]"
           >
             <option value="">All</option>
             <option value="recipe">Recipes</option>
@@ -49,7 +49,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
           <select
             value={filters.cuisine}
             onChange={(e) => updateFilter('cuisine', e.target.value)}
-            className="w-full p-2 bg-bg border border-muted rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full p-2.5 sm:p-2 bg-bg border border-muted rounded-lg text-sm sm:text-base text-text focus:outline-none focus:ring-2 focus:ring-accent touch-manipulation min-h-[44px] sm:min-h-[36px]"
           >
             {cuisines.map(cuisine => (
               <option key={cuisine} value={cuisine === 'All' ? '' : cuisine}>
@@ -67,7 +67,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
           <select
             value={filters.cookTime || ''}
             onChange={(e) => updateFilter('cookTime', e.target.value ? Number(e.target.value) : null)}
-            className="w-full p-2 bg-bg border border-muted rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full p-2.5 sm:p-2 bg-bg border border-muted rounded-lg text-sm sm:text-base text-text focus:outline-none focus:ring-2 focus:ring-accent touch-manipulation min-h-[44px] sm:min-h-[36px]"
           >
             <option value="">Any</option>
             {cookTimes.filter(t => t !== null).map(time => (
@@ -86,7 +86,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
           <select
             value={filters.diet}
             onChange={(e) => updateFilter('diet', e.target.value)}
-            className="w-full p-2 bg-bg border border-muted rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full p-2.5 sm:p-2 bg-bg border border-muted rounded-lg text-sm sm:text-base text-text focus:outline-none focus:ring-2 focus:ring-accent touch-manipulation min-h-[44px] sm:min-h-[36px]"
           >
             {diets.map(diet => (
               <option key={diet} value={diet === 'All' ? '' : diet}>
@@ -98,15 +98,15 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       </div>
 
       {/* Video Only Toggle */}
-      <div className="mt-4 flex items-center gap-2">
+      <div className="mt-3 sm:mt-4 flex items-center gap-2.5 sm:gap-2">
         <input
           type="checkbox"
           id="video-only"
           checked={filters.videoOnly}
           onChange={(e) => updateFilter('videoOnly', e.target.checked)}
-          className="w-4 h-4 accent-accent"
+          className="w-5 h-5 sm:w-4 sm:h-4 accent-accent touch-manipulation cursor-pointer"
         />
-        <label htmlFor="video-only" className="text-sm text-text">
+        <label htmlFor="video-only" className="text-sm sm:text-sm text-text cursor-pointer touch-manipulation select-none">
           Show only recipes with video
         </label>
       </div>
