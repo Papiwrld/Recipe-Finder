@@ -125,35 +125,6 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 relative">
-        {/* Animated Background */}
-        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-          {/* Gradient Orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow delay-1000" />
-          <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slow delay-2000" />
-          
-          {/* Animated Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-            <div 
-              className="absolute inset-0 animate-gridMove"
-              style={{
-                backgroundImage: `
-                  linear-gradient(to right, var(--color-accent) 1px, transparent 1px),
-                  linear-gradient(to bottom, var(--color-accent) 1px, transparent 1px)
-                `,
-                backgroundSize: '50px 50px',
-              }} 
-            />
-          </div>
-          
-          {/* Floating Particles */}
-          <div className="absolute top-20 left-10 w-2 h-2 bg-accent/20 rounded-full animate-float" />
-          <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-purple-500/20 rounded-full animate-float delay-500" />
-          <div className="absolute bottom-32 left-1/4 w-1 h-1 bg-orange-500/20 rounded-full animate-float delay-1000" />
-          <div className="absolute top-1/3 right-1/3 w-2.5 h-2.5 bg-accent/15 rounded-full animate-float delay-1500" />
-          <div className="absolute bottom-20 right-10 w-1.5 h-1.5 bg-purple-500/15 rounded-full animate-float delay-2000" />
-        </div>
-
         {/* Section Title */}
         <div className="mb-8 sm:mb-10 md:mb-12 relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text mb-3 sm:mb-4 tracking-tight">
@@ -162,7 +133,7 @@ export default function Home() {
           <p className="text-base sm:text-lg text-text-secondary/80">
             {hasActiveSearch
               ? `Found ${displayRecipes.length} ${displayRecipes.length === 1 ? 'recipe' : 'recipes'}`
-              : 'Discover delicious recipes from around the world'}
+              : 'A selection of recipes to get you started'}
           </p>
         </div>
 

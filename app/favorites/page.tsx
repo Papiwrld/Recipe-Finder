@@ -61,13 +61,13 @@ export default function FavoritesPage() {
             <Heart className="w-16 h-16 text-text-secondary mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-text mb-2">No favorites yet</h2>
             <p className="text-text-secondary mb-6">
-              Start exploring recipes and save your favorites!
+              Save recipes to find them here later.
             </p>
             <Link
               href="/"
               className="inline-block px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors"
             >
-              Discover Recipes
+              Browse recipes
             </Link>
           </div>
         ) : (
@@ -77,7 +77,7 @@ export default function FavoritesPage() {
                 {favorites.length} {favorites.length === 1 ? 'Favorite Recipe' : 'Favorite Recipes'}
               </h2>
               <p className="text-text-secondary">
-                Your saved recipes for easy access
+                Recipes you saved
               </p>
             </div>
             <RecipeGrid recipes={favorites} />

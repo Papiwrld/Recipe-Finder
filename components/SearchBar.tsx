@@ -14,6 +14,7 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const commonIngredients = [
@@ -55,7 +56,7 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
     // Auto-search when typing (debounced)
     if (value.trim().length > 2) {
       performSearch(value.trim(), ingredients);
-    } else if (ingredients.length > 0) {
+    } else {
       performSearch('', ingredients);
     }
   };
@@ -96,6 +97,8 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
       performSearch('', newIngredients);
     } else if (inputValue.trim().length > 2) {
       performSearch(inputValue.trim(), []);
+    } else {
+      performSearch('', []);
     }
   };
 
@@ -117,7 +120,7 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
   // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setShowSuggestions(false);
       }
     };
@@ -137,7 +140,7 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
 
   return (
     <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 md:px-6">
-      <div className="relative">
+      <div className="relative" ref={containerRef}>
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-2 sm:p-2.5 md:p-3 bg-white/98 dark:bg-surface/98 backdrop-blur-xl rounded-3xl transition-all duration-300 shadow-xl">
           {/* Search Icon (Left) */}
           <div className="hidden sm:flex items-center justify-center text-text-secondary/60">
@@ -169,6 +172,7 @@ export default function SearchBar({ onSearch, placeholder = "Try: pasta, chicken
           <input
             ref={inputRef}
             type="text"
+            aria-label="Search recipes or add ingredients"
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}

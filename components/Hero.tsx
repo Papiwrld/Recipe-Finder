@@ -102,10 +102,10 @@ export default function Hero({ onSearch }: HeroProps) {
       {/* Content */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 text-center pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 md:mb-8 drop-shadow-2xl leading-tight px-2 tracking-tight">
-            Discover recipes & cocktails you&apos;ll love
+            Find your next meal
           </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-accent mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto drop-shadow-lg font-light px-4 leading-relaxed">
-              Explore thousands of recipes and cocktails from around the world with advanced search and smart results
+              Search recipes and cocktails by name or ingredient.
             </p>
 
         {/* Floating Search */}

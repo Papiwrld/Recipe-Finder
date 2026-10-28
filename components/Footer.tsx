@@ -18,8 +18,7 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg text-text mb-4">About Recipe Finder</h3>
             <p className="text-text-secondary text-sm">
-              Discover and explore thousands of delicious recipes from around the world. 
-              Cook with confidence using our curated collection of authentic dishes.
+              Find recipes and cocktails by name or ingredient, and save your favorites for later.
             </p>
           </div>
 

@@ -100,10 +100,10 @@ export default function CocktailsPage() {
 
         <div className="relative z-20 w-full max-w-6xl mx-auto px-4 text-center pt-8">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl leading-tight">
-            Discover Amazing Cocktails
+            Find a cocktail
           </h2>
           <p className="text-xl md:text-2xl text-white/95 mb-10 max-w-2xl mx-auto drop-shadow-lg font-light">
-            Search thousands of cocktail recipes with smart discovery
+            Search cocktail recipes by name.
           </p>
 
           <div className="mt-8">
@@ -125,7 +125,7 @@ export default function CocktailsPage() {
           <p className="text-text-secondary">
             {searchQuery
               ? `Found ${displayCocktails.length} cocktails`
-              : 'Explore delicious cocktail recipes from around the world'}
+              : 'A selection of cocktails to get you started'}
           </p>
         </div>
 
