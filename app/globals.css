@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Palette: neutral monochrome with one accent.
+  Shape rule: everything interactive is a full pill. Photos and panels are 16px.
+  Layers: dock 40, cook mode 50, video 60.
+*/
+:root {
+  color-scheme: light;
+  --color-bg: 250 250 250;
+  --color-surface: 254 254 254;
+  --color-muted: 240 240 241;
+  --color-line: 228 228 231;
+  --color-accent: 201 63 20;
+  --color-on-accent: 254 254 254;
+  --color-text: 24 24 27;
+  --color-text-secondary: 98 98 106;
+  --color-shadow: 24 24 27;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: 14 14 16;
+  --color-surface: 24 24 27;
+  --color-muted: 39 39 42;
+  --color-line: 49 49 54;
+  --color-accent: 255 122 69;
+  --color-on-accent: 23 12 6;
+  --color-text: 244 244 245;
+  --color-text-secondary: 161 161 170;
+  --color-shadow: 0 0 0;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: rgb(var(--color-bg));
+  }
+
+  body {
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-text));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button,
+  a,
+  select,
+  input[type='checkbox'] {
+    touch-action: manipulation;
+  }
+
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-on-accent hover:bg-accent/90;
+  }
+
+  .btn-secondary {
+    @apply btn border border-line bg-surface text-text hover:border-text-secondary/50 hover:bg-muted;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full text-text-secondary transition duration-200 hover:bg-muted hover:text-text active:scale-95;
+  }
+
+  .chip {
+    @apply inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-sm font-medium text-text-secondary transition duration-200 hover:border-text-secondary/50 hover:text-text active:scale-[0.98];
+  }
+
+  .chip-active {
+    @apply border-text bg-text text-bg hover:border-text hover:text-bg;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-sm font-medium text-text-secondary;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border border-line bg-surface px-4 py-3 text-base text-text transition duration-200 placeholder:text-text-secondary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25;
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-medium text-text;
+  }
+
+  .page-title {
+    @apply text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-text sm:text-6xl;
+  }
+
+  .section-title {
+    @apply font-display text-2xl font-semibold tracking-tight text-text sm:text-3xl;
+  }
+
+  /* Flex rather than grid so a short last row stays centered under the heading */
+  .recipe-grid {
+    --cols: 2;
+    --gap-x: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: var(--gap-x);
+    row-gap: 2rem;
+  }
+
+  .recipe-grid > * {
+    width: calc((100% - (var(--cols) - 1) * var(--gap-x)) / var(--cols));
+  }
+
+  @media (min-width: 768px) {
+    .recipe-grid {
+      --cols: 3;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .recipe-grid {
+      --cols: 4;
+      --gap-x: 1.5rem;
+      row-gap: 2.5rem;
+    }
+  }
+
+  /* Frosted so photos stay visible as they scroll under the floating nav */
+  .dock {
+    background: rgb(var(--color-surface) / 0.72);
+    border: 1px solid rgb(var(--color-line) / 0.9);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      0 16px 40px -12px rgb(var(--color-shadow) / 0.35);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .dock {
+      background: rgb(var(--color-surface));
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-line));
+  border: 2px solid rgb(var(--color-bg));
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-text-secondary));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

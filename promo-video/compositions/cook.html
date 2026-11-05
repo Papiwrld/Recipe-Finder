@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: 'Bricolage'; src: url('assets/fonts/bricolage-600.woff2'); font-weight: 600; }
+    @font-face { font-family: 'Instrument'; src: url('assets/fonts/instrument-500.woff2'); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    
+    #k-ground { position: absolute; inset: 0; background: #c93f14; }
+    .k-n { position: absolute; top: 40px; left: 0; width: 100%; text-align: center; font: 600 460px/1.1 'Bricolage'; color: #fafafa; }
+    .k-s { position: absolute; top: 590px; left: 240px; width: 1440px; text-align: center; font: 600 84px/1.12 'Bricolage'; letter-spacing: -0.02em; color: #fafafa; }
+    #k-timer { position: absolute; top: 850px; left: 0; width: 100%; text-align: center; font: 600 110px/1.1 'Bricolage'; font-variant-numeric: tabular-nums; color: #18181b; }
+  </style>
+  <div id="root" data-composition-id="cook" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="k-ground"></div>
+    <div id="k-n0" class="k-n">1</div>
+    <p id="k-s0" class="k-s">Fry until deep golden brown</p>
+    <div id="k-n1" class="k-n">2</div>
+    <p id="k-s1" class="k-s">Saute the chopped garlic</p>
+    <div id="k-n2" class="k-n">3</div>
+    <p id="k-s2" class="k-s">Add the chicken pieces to the wok</p>
+    <div id="k-timer">5:00</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#k-n0", { y: 1200, opacity: 1 }, { y: 0, duration: 0.4, ease: "expo.out" }, 0.10);
+    tl.fromTo("#k-s0", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2 }, 0.20);
+    tl.to("#k-n0", { y: -1200, duration: 0.25, ease: "power3.in" }, 1.25);
+    tl.to("#k-s0", { opacity: 0, duration: 0.15 }, 1.25);
+    tl.fromTo("#k-n1", { y: 1200, opacity: 1 }, { y: 0, duration: 0.4, ease: "expo.out" }, 1.45);
+    tl.fromTo("#k-s1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2 }, 1.55);
+    tl.to("#k-n1", { y: -1200, duration: 0.25, ease: "power3.in" }, 2.60);
+    tl.to("#k-s1", { opacity: 0, duration: 0.15 }, 2.60);
+    tl.fromTo("#k-n2", { y: 1200, opacity: 1 }, { y: 0, duration: 0.4, ease: "expo.out" }, 2.80);
+    tl.fromTo("#k-s2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2 }, 2.90);
+    const clock = { s: 300 };
+    const timer = document.getElementById("k-timer");
+    tl.to(clock, { s: 42, duration: 4, ease: "power1.in", onUpdate: () => {
+      const s = Math.round(clock.s);
+      timer.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+    } }, 0.1);
+    window.__timelines["cook"] = tl;
+  </script>
+</template>

@@ -1,0 +1,47 @@
+<template>
+  <style>
+    @font-face { font-family: 'Bricolage'; src: url('assets/fonts/bricolage-600.woff2'); font-weight: 600; }
+    @font-face { font-family: 'Instrument'; src: url('assets/fonts/instrument-500.woff2'); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    
+    #n-ground { position: absolute; inset: 0; background: #fafafa; }
+    .n-word { position: absolute; top: 120px; left: 0; width: 100%; text-align: center; font: 600 330px/1.15 'Bricolage'; letter-spacing: -0.05em; opacity: 0; }
+    #n-pill { position: absolute; left: 310px; top: 680px; width: 1300px; height: 210px; border-radius: 105px; background: #fefefe; box-shadow: 0 24px 60px -16px rgb(24 24 27 / .5); }
+    #n-active { position: absolute; left: 22px; top: 22px; width: 418px; height: 166px; border-radius: 83px; background: #18181b; }
+    .n-tab { position: absolute; top: 22px; width: 418px; height: 166px; text-align: center; font: 500 60px/166px 'Instrument'; color: #62626a; }
+  </style>
+  <div id="root" data-composition-id="navflip" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="n-ground"></div>
+    <h2 id="n-w0" class="n-word" style="color:#18181b">Recipes</h2>
+    <h2 id="n-w1" class="n-word" style="color:#fafafa">Cocktails</h2>
+    <h2 id="n-w2" class="n-word" style="color:#fafafa">Favorites</h2>
+    <div id="n-pill">
+      <div id="n-active"></div>
+      <div id="n-t0" class="n-tab" style="left:22px">Recipes</div>
+      <div id="n-t1" class="n-tab" style="left:440px">Cocktails</div>
+      <div id="n-t2" class="n-tab" style="left:858px">Favorites</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#n-pill", { y: 500 }, { y: 0, duration: 0.5, ease: "back.out(1.4)" }, 0);
+    tl.fromTo("#n-w0", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 0.10);
+    tl.to("#n-ground", { backgroundColor: "#fafafa", duration: 0.12 }, 0.10);
+    tl.to("#n-active", { x: 0, duration: 0.35, ease: "power3.out" }, 0.10);
+    tl.to("#n-t0", { color: "#fafafa", duration: 0.1 }, 0.10);
+    tl.to("#n-w0", { opacity: 0, duration: 0.05 }, 1.05);
+    tl.to("#n-t0", { color: "#62626a", duration: 0.1 }, 1.10);
+    tl.fromTo("#n-w1", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 1.10);
+    tl.to("#n-ground", { backgroundColor: "#0e0e10", duration: 0.12 }, 1.10);
+    tl.to("#n-active", { x: 418, duration: 0.35, ease: "power3.out" }, 1.10);
+    tl.to("#n-t1", { color: "#fafafa", duration: 0.1 }, 1.10);
+    tl.to("#n-w1", { opacity: 0, duration: 0.05 }, 2.05);
+    tl.to("#n-t1", { color: "#62626a", duration: 0.1 }, 2.10);
+    tl.fromTo("#n-w2", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 2.10);
+    tl.to("#n-ground", { backgroundColor: "#c93f14", duration: 0.12 }, 2.10);
+    tl.to("#n-active", { x: 836, duration: 0.35, ease: "power3.out" }, 2.10);
+    tl.to("#n-t2", { color: "#fafafa", duration: 0.1 }, 2.10);
+    tl.to("#n-pill", { y: 500, duration: 0.35, ease: "power3.in" }, 3.1);
+    window.__timelines["navflip"] = tl;
+  </script>
+</template>

@@ -1,0 +1,70 @@
+<template>
+  <style>
+    @font-face { font-family: 'Bricolage'; src: url('assets/fonts/bricolage-600.woff2'); font-weight: 600; }
+    @font-face { font-family: 'Instrument'; src: url('assets/fonts/instrument-500.woff2'); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    
+    #w-ground { position: absolute; inset: 0; background: #fafafa; }
+    .w-col { position: absolute; top: 0; width: 580px; }
+    .w-card { width: 580px; height: 520px; text-align: center; }
+    .w-card img { display: block; width: 580px; height: 430px; object-fit: cover; border-radius: 28px; }
+    .w-card h3 { margin-top: 14px; font: 600 42px/1 'Bricolage'; color: #18181b; }
+    #w-saved { position: absolute; left: 670px; top: 325px; width: 580px; height: 430px; border-radius: 28px; object-fit: cover; box-shadow: 0 24px 48px -20px rgb(24 24 27 / .45); }
+    #w-heart-bg { position: absolute; left: 1140px; top: 345px; width: 90px; height: 90px; border-radius: 50%; background: #fefefe; }
+    #w-heart { position: absolute; left: 1155px; top: 360px; width: 60px; height: 60px; fill: #c93f14; transform-origin: 50% 55%; }
+    #w-cursor { position: absolute; left: 0; top: 0; width: 96px; height: 96px; }
+  </style>
+  <div id="root" data-composition-id="wall" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="w-ground"></div>
+    <div id="w-c0" class="w-col" style="left:50px">
+      <div class="w-card"><img src="assets/chicken1.jpg" alt="" /><h3>Chicken Mandi</h3></div>
+      <div class="w-card"><img src="assets/chicken4.jpg" alt="" /><h3>Chicken Karaage</h3></div>
+      <div class="w-card"><img src="assets/chicken7.jpg" alt="" /><h3>Tandoori chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken10.jpg" alt="" /><h3>Chicken Lollipop</h3></div>
+      <div class="w-card"><img src="assets/chicken1.jpg" alt="" /><h3>Chicken Mandi</h3></div>
+      <div class="w-card"><img src="assets/chicken4.jpg" alt="" /><h3>Chicken Karaage</h3></div>
+      <div class="w-card"><img src="assets/chicken7.jpg" alt="" /><h3>Tandoori chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken10.jpg" alt="" /><h3>Chicken Lollipop</h3></div>
+    </div>
+    <div id="w-c1" class="w-col" style="left:670px">
+      <div class="w-card"><img src="assets/chicken2.jpg" alt="" /><h3>Sticky Chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken0.jpg" alt="" /><h3>Chicken Handi</h3></div>
+      <div class="w-card"><img src="assets/chicken8.jpg" alt="" /><h3>Chicken Couscous</h3></div>
+      <div class="w-card"><img src="assets/chicken11.jpg" alt="" /><h3>Chicken Basquaise</h3></div>
+      <div class="w-card"><img src="assets/chicken2.jpg" alt="" /><h3>Sticky Chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken0.jpg" alt="" /><h3>Chicken Handi</h3></div>
+      <div class="w-card"><img src="assets/chicken8.jpg" alt="" /><h3>Chicken Couscous</h3></div>
+      <div class="w-card"><img src="assets/chicken11.jpg" alt="" /><h3>Chicken Basquaise</h3></div>
+    </div>
+    <div id="w-c2" class="w-col" style="left:1290px">
+      <div class="w-card"><img src="assets/chicken3.jpg" alt="" /><h3>Chicken Congee</h3></div>
+      <div class="w-card"><img src="assets/chicken6.jpg" alt="" /><h3>Spanish Chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken9.jpg" alt="" /><h3>Kung Pao Chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken5.jpg" alt="" /><h3>Chicken Marengo</h3></div>
+      <div class="w-card"><img src="assets/chicken3.jpg" alt="" /><h3>Chicken Congee</h3></div>
+      <div class="w-card"><img src="assets/chicken6.jpg" alt="" /><h3>Spanish Chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken9.jpg" alt="" /><h3>Kung Pao Chicken</h3></div>
+      <div class="w-card"><img src="assets/chicken5.jpg" alt="" /><h3>Chicken Marengo</h3></div>
+    </div>
+    <img id="w-saved" src="assets/chicken0.jpg" alt="" />
+    <div id="w-heart-bg"></div>
+    <svg id="w-heart" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"/></svg>
+    <svg id="w-cursor" viewBox="0 0 24 24"><path d="M4 2 L4 20 L9 15.5 L12.5 22.5 L15.5 21 L12 14.2 L18.5 14 Z" fill="#18181b" stroke="#fefefe" stroke-width="1.5" stroke-linejoin="round"/></svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#w-c0", { y: 0 }, { y: -1560, duration: 4.4, ease: "power1.inOut" }, 0);
+    tl.fromTo("#w-c1", { y: -1560 }, { y: 0, duration: 4.4, ease: "power1.inOut" }, 0);
+    tl.fromTo("#w-c2", { y: 0 }, { y: -1560, duration: 4.4, ease: "power1.inOut" }, 0);
+    tl.fromTo("#w-saved", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 1.8);
+    tl.fromTo("#w-heart-bg", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 2);
+    tl.fromTo("#w-heart", { opacity: 0 }, { opacity: 0.25, duration: 0.01 }, 2);
+    tl.fromTo("#w-cursor", { x: 1950, y: 1100 }, { x: 1175, y: 385, duration: 0.7, ease: "power3.inOut" }, 2.3);
+    tl.to("#w-heart", { opacity: 1, duration: 0.01 }, 3.1);
+    tl.fromTo("#w-heart", { scale: 1 }, { scale: 1.5, duration: 0.1, ease: "power2.out" }, 3.1);
+    tl.to("#w-heart", { scale: 1, duration: 0.3, ease: "elastic.out(1, 0.4)" }, 3.2);
+    tl.to("#w-cursor", { x: 2000, duration: 0.3, ease: "power3.in" }, 3.3);
+    tl.to("#w-heart", { scale: 70, duration: 0.75, ease: "power3.in" }, 3.55);
+    window.__timelines["wall"] = tl;
+  </script>
+</template>

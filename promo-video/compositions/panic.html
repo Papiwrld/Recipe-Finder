@@ -1,0 +1,35 @@
+<template>
+  <style>
+    @font-face { font-family: 'Bricolage'; src: url('assets/fonts/bricolage-600.woff2'); font-weight: 600; }
+    @font-face { font-family: 'Instrument'; src: url('assets/fonts/instrument-500.woff2'); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    
+    #p-ground { position: absolute; inset: 0; background: #18181b; }
+    .p-row { position: absolute; left: -400px; white-space: nowrap; font: 600 150px/1 'Bricolage'; letter-spacing: -0.03em; color: #fafafa; }
+    #p-big { position: absolute; top: 330px; left: 0; width: 100%; text-align: center; font: 600 330px/1.1 'Bricolage'; letter-spacing: -0.05em; color: #ff7a45; }
+  </style>
+  <div id="root" data-composition-id="panic" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="p-ground"></div>
+    <div id="p-r0" class="p-row" style="top:20px">Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? </div>
+    <div id="p-r1" class="p-row" style="top:200px">Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? </div>
+    <div id="p-r2" class="p-row" style="top:380px">Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? </div>
+    <div id="p-r3" class="p-row" style="top:560px">Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? </div>
+    <div id="p-r4" class="p-row" style="top:740px">Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? </div>
+    <div id="p-r5" class="p-row" style="top:920px">Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? Chicken again? Pasta again? Takeout again? </div>
+    <h2 id="p-big">Again?</h2>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#p-r0", { x: 0, opacity: 0 }, { x: -1800, opacity: 1, duration: 3.4, ease: "none" }, 0.00);
+    tl.fromTo("#p-r1", { x: -1800, opacity: 0 }, { x: 0, opacity: 1, duration: 3.4, ease: "none" }, 0.18);
+    tl.fromTo("#p-r2", { x: 0, opacity: 0 }, { x: -1800, opacity: 1, duration: 3.4, ease: "none" }, 0.36);
+    tl.fromTo("#p-r3", { x: -1800, opacity: 0 }, { x: 0, opacity: 1, duration: 3.4, ease: "none" }, 0.54);
+    tl.fromTo("#p-r4", { x: 0, opacity: 0 }, { x: -1800, opacity: 1, duration: 3.4, ease: "none" }, 0.72);
+    tl.fromTo("#p-r5", { x: -1800, opacity: 0 }, { x: 0, opacity: 1, duration: 3.4, ease: "none" }, 0.90);
+    tl.fromTo("#p-big", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "expo.out" }, 2.6);
+    tl.to(".p-row", { opacity: 0.12, duration: 0.2 }, 2.6);
+    tl.fromTo("#p-ground", { x: -18, y: 12 }, { x: 0, y: 0, duration: 0.3, ease: "elastic.out(1, 0.3)", immediateRender: false }, 2.7);
+    tl.to("#p-big", { scale: 0, duration: 0.3, ease: "power3.in" }, 3.55);
+    window.__timelines["panic"] = tl;
+  </script>
+</template>

@@ -1,0 +1,48 @@
+<template>
+  <style>
+    @font-face { font-family: 'Bricolage'; src: url('assets/fonts/bricolage-600.woff2'); font-weight: 600; }
+    @font-face { font-family: 'Instrument'; src: url('assets/fonts/instrument-500.woff2'); font-weight: 500; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    
+    #h-ground { position: absolute; inset: 0; background: #c93f14; }
+    #h-q { position: absolute; top: 300px; left: 0; width: 100%; text-align: center; font: 600 340px/1.1 'Bricolage'; letter-spacing: -0.05em; color: #fafafa; }
+    #h-word { position: absolute; inset: 0; transform-origin: 438px 527px; }
+    .h-d { position: absolute; top: 250px; left: 0; width: 100%; text-align: center; font: 600 470px/1.2 'Bricolage'; letter-spacing: -0.05em; color: transparent; background-size: cover; background-position: center; -webkit-background-clip: text; background-clip: text; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="h-ground"></div>
+    <h1 id="h-q">What's for</h1>
+    <div id="h-word">
+      <h1 id="h-d0" class="h-d" style="background-image:url('assets/chicken4.jpg')">dinner?</h1>
+      <h1 id="h-d1" class="h-d" style="background-image:url('assets/hero0.jpg')">dinner?</h1>
+      <h1 id="h-d2" class="h-d" style="background-image:url('assets/chicken9.jpg')">dinner?</h1>
+      <h1 id="h-d3" class="h-d" style="background-image:url('assets/hero3.jpg')">dinner?</h1>
+      <h1 id="h-d4" class="h-d" style="background-image:url('assets/chicken7.jpg')">dinner?</h1>
+      <h1 id="h-d5" class="h-d" style="background-image:url('assets/meal0.jpg')">dinner?</h1>
+      <h1 id="h-d6" class="h-d" style="background-image:url('assets/hero2.jpg')">dinner?</h1>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#h-q", { scale: 1.25 }, { scale: 1, duration: 0.5, ease: "expo.out" }, 0);
+    tl.to("#h-q", { opacity: 0, duration: 0.01 }, 1);
+    tl.to("#h-ground", { backgroundColor: "#fafafa", duration: 0.01 }, 1);
+    tl.fromTo("#h-d0", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.00);
+    tl.to("#h-d0", { opacity: 0, duration: 0.01 }, 1.25);
+    tl.fromTo("#h-d1", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.25);
+    tl.to("#h-d1", { opacity: 0, duration: 0.01 }, 1.50);
+    tl.fromTo("#h-d2", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.50);
+    tl.to("#h-d2", { opacity: 0, duration: 0.01 }, 1.75);
+    tl.fromTo("#h-d3", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.75);
+    tl.to("#h-d3", { opacity: 0, duration: 0.01 }, 2.00);
+    tl.fromTo("#h-d4", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 2.00);
+    tl.to("#h-d4", { opacity: 0, duration: 0.01 }, 2.25);
+    tl.fromTo("#h-d5", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 2.25);
+    tl.to("#h-d5", { opacity: 0, duration: 0.01 }, 2.50);
+    tl.fromTo("#h-d6", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 2.50);
+    
+    tl.fromTo("#h-word", { scale: 0.92 }, { scale: 1, duration: 0.5, ease: "expo.out" }, 1);
+    tl.to("#h-word", { scale: 40, duration: 0.8, ease: "power3.in" }, 3.2);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
